@@ -1,3 +1,5 @@
+import Data.List
+
 -- Problem 1: Find the last element of a list.
 myLast :: [a] -> a
 myLast [] = error "Can't get last element of an empty list"
@@ -42,8 +44,12 @@ flatten (Elem x) = [x]
 flatten (List (x : xs)) = flatten x ++ flatten (List xs)
 flatten (List []) = []  
 
+-- Problem 8: Eliminate consecutive duplicates of list elements.
+compress :: Eq a => [a] -> [a]
+compress [] = []
+compress [x] = [x]
+compress (x1 : x2 : xs) = if x1 == x2 then compress (x2 : xs) else x1 : compress (x2 : xs)
 
-
-
-
+compress' :: Eq a => [a] -> [a]
+compress' = map head . group
 
