@@ -1,4 +1,4 @@
-module OneToTen  
+module Problem1To10  
 ( myLast	-- Problem 1 
 , nextToLast	-- Problem 2
 , elementAt	-- Problem 3
