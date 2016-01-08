@@ -1,3 +1,16 @@
+module OneToTen  
+( myLast	-- Problem 1 
+, nextToLast	-- Problem 2
+, elementAt	-- Problem 3
+, myLength	-- Problem 4
+, myReverse	-- Problem 5
+, isPalindrome	-- Problem 6
+, flatten	-- Problem 7
+, compress	-- Problem 8
+, pack		-- Problem 9
+, encode	-- Problem 10
+) where 
+
 import Data.List
 
 -- Problem 1: Find the last element of a list.
@@ -53,3 +66,14 @@ compress (x1 : x2 : xs) = if x1 == x2 then compress (x2 : xs) else x1 : compress
 compress' :: Eq a => [a] -> [a]
 compress' = map head . group
 
+-- Problem 9: Pack consecutive duplicates of list elements into sublists.                   
+pack :: Eq a => [a] -> [[a]]
+pack [] = []
+pack xs = [takeWhile (== head xs) xs] ++ pack (dropWhile (== head xs) xs)
+
+pack' :: Eq a => [a] -> [[a]]
+pack' = group
+
+-- Problem 10: Run-length encoding of a list.
+encode :: Eq a => [a] -> [(Int, a)]
+encode = map (\x -> (length x, head x)) . pack
