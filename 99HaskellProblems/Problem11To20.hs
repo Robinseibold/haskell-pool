@@ -40,3 +40,21 @@ dropEvery :: [a] -> Int -> [a]
 dropEvery [] _ = []
 dropEvery xs n = fst ys ++ dropEvery (drop 1 $ snd ys) n
 			where ys = splitAt (n - 1) xs 
+
+-- Problem 17: Split a list into two parts; the length of the first part is given.
+split :: [a] -> Int -> ([a], [a])
+split xs n = (take n xs, drop n xs)
+
+-- Problem 18: Extract a slice from a list.
+slice :: [a] -> Int -> Int -> [a]
+slice xs n1 n2 = take ((n2 - n1) + 1) $ drop (n1 - 1) xs
+
+-- Problem 19: Rotate a list N places to the left.
+rotate :: [a] -> Int -> [a]
+rotate xs n = drop i xs ++ take i xs
+		where i = if n > 0 then n else length xs + n
+
+-- Problem 20: Remove the K'th element from a list.
+removeAt :: Int -> [a] -> (a, [a])
+removeAt n xs = (xs !! (n - 1), (fst ys) ++ (tail $ snd ys))
+		where ys = split xs (n - 1)
